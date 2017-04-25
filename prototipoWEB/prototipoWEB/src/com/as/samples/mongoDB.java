@@ -106,20 +106,21 @@ public class mongoDB {
 		String mensaje2 = ""; 
 		String mensaje3 = "";
 		String link = "";
-		//Conexion con mongo
+		//Conexion con mogo
 		mongoClient = new MongoClient( "localhost" , 27017 );
 		DB db = mongoClient.getDB( "datos" ); //Selecciona base de datos
 		DBCollection collection = db.getCollection("Tokens"); //Selecciona la coleccion
-        
+        //DBCursor iterable = db.getCollection("contratos").find(new BasicDBObject("disponibilidades_presupuestales", id));
+        //DBCursor iterable = db.getCollection("contratos").find();
         DBCursor iterable = collection.find();
         mensaje = "<table id='t01'> <tr> <th> Nombre set </th> <th> Token </th> </tr> ";
         while(iterable.hasNext()){//Recorreo la consulta
         	resultadoconsulta = new BasicDBObject((Map) iterable.next());
+            link = resultadoconsulta.get("name").toString().replace(' ', '-');
+            mensaje2 = mensaje2 + " <tr> <td> " + resultadoconsulta.get("name") + " </td> <td> <a href='https://www.datos.gov.co/Organismos-de-Control" +"/" +  link + "/" + resultadoconsulta.get("id") +" ' target='_blank'>  " + resultadoconsulta.get("id") + " </a> </td> </tr> ";
+			//}
         	
-        	link = resultadoconsulta.get("name").toString().replace(' ', '-');
-        	mensaje2 = " <tr> <td> " + resultadoconsulta.get("name") + " </td> <td> <a href='https://www.datos.gov.co/Organismos-de-Control" +"/" +  link + "/" + resultadoconsulta.get("id") +" ' target='_blank'>  " + resultadoconsulta.get("id") + " </a> </td> </tr> ";
         }
 		return mensaje3 = mensaje + mensaje2 + " </table>";
-                
 	}
 }
