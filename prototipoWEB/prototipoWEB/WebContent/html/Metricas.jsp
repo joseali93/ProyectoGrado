@@ -29,9 +29,7 @@ pageEncoding="ISO-8859-1"%>
 </head>
 <style> 
 
-.modal-lg{
-	width:1500px;
-}
+
 </style>
 <body class="nav-md">
   <div class="container body">
@@ -52,7 +50,7 @@ pageEncoding="ISO-8859-1"%>
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a href="/prototipoWEB/html/IngresoDatos.html"><i class="fa fa-database"></i> Ingreso datos </a>
+                <li><a href="/prototipoWEB/html/IngresoDatos.jsp"><i class="fa fa-database"></i> Ingreso datos </a>
 
                 </li>
                 <li><a href="/prototipoWEB/Metricas"><i class="fa fa-bar-chart"></i> Calidad </span></a>

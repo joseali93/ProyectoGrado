@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,5 +98,28 @@ public class mongoDB {
 		
 		
 		
+	}
+	public String consultaids(){
+		MongoClient mongoClient = null;
+		BasicDBObject resultadoconsulta = null;
+		String mensaje = "";
+		String mensaje2 = ""; 
+		String mensaje3 = "";
+		String link = "";
+		//Conexion con mongo
+		mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "datos" ); //Selecciona base de datos
+		DBCollection collection = db.getCollection("Tokens"); //Selecciona la coleccion
+        
+        DBCursor iterable = collection.find();
+        mensaje = "<table id='t01'> <tr> <th> Nombre set </th> <th> Token </th> </tr> ";
+        while(iterable.hasNext()){//Recorreo la consulta
+        	resultadoconsulta = new BasicDBObject((Map) iterable.next());
+        	
+        	link = resultadoconsulta.get("name").toString().replace(' ', '-');
+        	mensaje2 = " <tr> <td> " + resultadoconsulta.get("name") + " </td> <td> <a href='https://www.datos.gov.co/Organismos-de-Control" +"/" +  link + "/" + resultadoconsulta.get("id") +" ' target='_blank'>  " + resultadoconsulta.get("id") + " </a> </td> </tr> ";
+        }
+		return mensaje3 = mensaje + mensaje2 + " </table>";
+                
 	}
 }
